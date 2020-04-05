@@ -19,6 +19,8 @@ import os
 
 DEFAULT_LANGUAGE = os.getenv('DEFAULT_LANGUAGE', 'en')
 
+EMULATED_MEDIAWIKI_PORT = os.getenv('EMULATED_MEDIAWIKI_PORT', '8006')
+
 HOST = os.getenv('HOST', 'localhost')
 
 LOG_PATH = os.getenv('LOG_PATH', 'cusdeb-helpik.log')
