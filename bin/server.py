@@ -22,8 +22,8 @@ import bs4
 from aiohttp import web
 from aiohttp.web_request import Request
 
-from bin import config
-from bin import exceptions
+from helpik import config
+from helpik import exceptions
 
 logging.basicConfig(filename=config.LOG_PATH, level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
