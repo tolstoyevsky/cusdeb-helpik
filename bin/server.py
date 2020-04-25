@@ -43,6 +43,7 @@ class Handler(web.View):
             'format': 'json',
             'formatversion': 2
         }
+        self._section = ''
         self._synopsis = ''
         self._client_language = config.DEFAULT_LANGUAGE
 
@@ -56,6 +57,9 @@ class Handler(web.View):
 
         if 'language' in self.request.query:
             self._client_language = self.request.query['language']
+
+        if 'section' in self.request.query:
+            self._section = self.request.query['section']
 
         await self._get_synopsis()
 
@@ -113,7 +117,13 @@ class Handler(web.View):
     def _strip(self):
         """Fetches synopsis and strips HTML tags out of the this. """
 
-        text = bs4.BeautifulSoup(self._synopsis, 'lxml')
+        synopsis = self._synopsis
+        if self._section != '':
+            self._section = self._section.replace('_', ' ')
+            synopsis = synopsis.partition(self._section)[2]
+            synopsis = synopsis.partition('</h')[2][2:]
+
+        text = bs4.BeautifulSoup(synopsis, 'lxml')
         try:
             text = text.p
         except AttributeError:
