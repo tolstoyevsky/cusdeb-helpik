@@ -128,7 +128,7 @@ class Handler(web.View):
 async def main():
     """The main entry point. """
 
-    app = web.Application()
+    app = web.Application(middlewares=[web.normalize_path_middleware()])
     app.router.add_get('/helpik_api/get_synopsis/', Handler)
     return app
 
