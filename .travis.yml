@@ -8,4 +8,5 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - find . -name "*.py" | xargs pylint
+  - find . -name "*.py" | xargs pylint --disable=fixme
+  - python3 -m pytest test/run_tests.py
