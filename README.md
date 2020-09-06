@@ -1,6 +1,6 @@
 # CusDeb Helpik
 
-CusDeb Helpik is microservice intended to gather synopses from CusDeb Wiki to display them on the client.
+CusDeb Helpik is microservice intended for gathering synopses from CusDeb Wiki to display them on the client.
 
 ## Authors
 
