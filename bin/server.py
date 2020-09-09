@@ -51,14 +51,14 @@ class Handler(web.View):
     async def get(self):
         """Handles GET requests to the microservice. """
 
-        if 'pageName' in self.request.query:
-            self._params['page'] = self.request.query['pageName']
+        if 'page' in self.request.query:
+            self._params['page'] = self.request.query['page']
 
-        if 'language' in self.request.query:
-            self._language = self.request.query['language']
+        if 'lang' in self.request.query:
+            self._language = self.request.query['lang']
 
-        if 'section' in self.request.query:
-            self._section = self.request.query['section']
+        if 'sec' in self.request.query:
+            self._section = self.request.query['sec']
 
         try:
             await self._get_raw_contents()
@@ -129,7 +129,7 @@ async def main():
     """The main entry point. """
 
     app = web.Application(middlewares=[web.normalize_path_middleware()])
-    app.router.add_get('/helpik_api/get_synopsis/', Handler)
+    app.router.add_get('/helpik_api/', Handler)
     return app
 
 

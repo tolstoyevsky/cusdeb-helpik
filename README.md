@@ -23,18 +23,18 @@ $ source cusdeb-helpik-env/bin/activate
 
 ## API
 
-* **URI:** `/helpik_api/get_synopsis/`
+* **URI:** `/helpik_api/`
 * **Method:** `GET`
 * **Params**
-  * `pageName=[string]`
-  * `language=[string]`
-  * `section=[string]`
+  * `page=[string]`
+  * `lang=[string]`
+  * `sec=[string]`
 
-  `pageName` is the name of the target page.
+  `page` is the name of the target page.
 
-  `language` is the language of the target page. If the page in the specified language doesn't exist, Helpik fallbacks to English. If the fallback doesn't work the microservice returns a 404 status code (see below).
+  `lang` is the language of the target page. If the page in the specified language doesn't exist, Helpik fallbacks to English. If the fallback doesn't work the microservice returns a 404 status code (see below).
 
-  `section` allows, if passed, the client to fetch the synopsis of the specified section on the target page instead of the synopsis of the page itself.
+  `sec` allows, if passed, the client to fetch the synopsis of the specified section on the target page instead of the synopsis of the page itself.
 * **Success Response**
   * **Code:** 200
     * **Content:** `{"text": "<text>", "url": "<url>"}`, where
@@ -46,7 +46,7 @@ $ source cusdeb-helpik-env/bin/activate
     * **Reason:** either the target page or the specified section on the target page doesn't exist.
   * **Code:** 503
     * **Content:** None
-    * **Reason:** the MediaWiki API is unavailable when invoking the `/helpik_api/get_synopsis/` endpoint.
+    * **Reason:** the MediaWiki API is unavailable when invoking the `/helpik_api/` endpoint.
 
 ## Authors
 
