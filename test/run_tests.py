@@ -65,14 +65,14 @@ class HelpikTestCase(AioHTTPTestCase):
     async def test_requesting_page(self):
         """Tests if it's possible to request for the synopsys of the specified page. """
 
-        path = '/helpik_api/get_synopsis/?pageName=Hello_page'
+        path = '/helpik_api/?page=Hello_page'
         resp = await self.client.request('GET', path)
         assert resp.status == 200
 
         parsed = await resp.json()
         assert parsed['text'] == '<p>Friendly greeting page.</p>'
 
-        resp = await self.client.request('GET', path + '&language=ru')
+        resp = await self.client.request('GET', path + '&lang=ru')
         assert resp.status == 200
 
         parsed = await resp.json()
@@ -84,7 +84,7 @@ class HelpikTestCase(AioHTTPTestCase):
         a non-existent _page_.
         """
 
-        path = '/helpik_api/get_synopsis/?pageName=Hello_page2'
+        path = '/helpik_api/?page=Hello_page2'
         resp = await self.client.request('GET', path)
         assert resp.status == 404
 
@@ -94,7 +94,7 @@ class HelpikTestCase(AioHTTPTestCase):
         a non-existent _section_.
         """
 
-        path = '/helpik_api/get_synopsis/?pageName=Hello_page&language=en&section=Description2'
+        path = '/helpik_api/?page=Hello_page&lang=en&sec=Description2'
         resp = await self.client.request('GET', path)
         assert resp.status == 404
 
@@ -102,7 +102,7 @@ class HelpikTestCase(AioHTTPTestCase):
     async def test_requesting_for_section(self):
         """Tests if it's possible to request the synopsis of the specified section. """
 
-        path = '/helpik_api/get_synopsis/?pageName=Hello_page&language=en&section=Description'
+        path = '/helpik_api/?page=Hello_page&lang=en&sec=Description'
         resp = await self.client.request('GET', path)
         assert resp.status == 200
 
@@ -113,7 +113,7 @@ class HelpikTestCase(AioHTTPTestCase):
     async def test_requesting_for_another_section(self):
         """Tests if it's possible to request the synopsis of another section from the same page. """
 
-        path = '/helpik_api/get_synopsis/?pageName=Hello_page&language={lang}&section=Copyright'
+        path = '/helpik_api/?page=Hello_page&lang={lang}&sec=Copyright'
         resp = await self.client.request('GET', path.format(lang='en'))
         assert resp.status == 200
 
@@ -133,7 +133,7 @@ class HelpikTestCase(AioHTTPTestCase):
         self._port = unused_port()  # the port isn't occupied by any server
         config.MEDIAWIKI_API_URL = f'http://127.0.0.1:{self._port}/api.php'  # unavailable server
 
-        path = '/helpik_api/get_synopsis/?pageName=Hello_page'
+        path = '/helpik_api/?page=Hello_page'
         resp = await self.client.request('GET', path)
         assert resp.status == 503
 
@@ -144,7 +144,7 @@ class HelpikTestCase(AioHTTPTestCase):
         """
 
         lang = 'fr'  # try to request for the page in French which doesn't exist
-        path = f'/helpik_api/get_synopsis/?pageName=Hello_page&language={lang}&section=Copyright'
+        path = f'/helpik_api/?page=Hello_page&lang={lang}&sec=Copyright'
         resp = await self.client.request('GET', path)
         assert resp.status == 200
 
