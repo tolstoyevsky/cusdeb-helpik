@@ -1,0 +1,1 @@
+CusDeb Helpik is written by [Dmitry Ivanko](https://github.com/Themanwhosmellslikesugar), [Vladislav Yarovoy](https://github.com/IrovoyVlad) and [Evgeny Golyshev](https://github.com/eugulixes). It's maintained by Evgeny Golyshev.
