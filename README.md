@@ -1,6 +1,6 @@
 # CusDeb Helpik
 
-CusDeb Helpik is microservice intended primarily, but **not** exclusively, for gathering synopses from [CusDeb Wiki](http://wiki.cusdeb.com) to display them on the [client](https://github.com/tolstoyevsky/cusdeb-web-client).
+CusDeb Helpik is a microservice intended primarily, but **not** exclusively, for gathering synopses from [CusDeb Wiki](http://wiki.cusdeb.com) to display them on the [client](https://github.com/tolstoyevsky/cusdeb-web-client).
 
 Helpik interacts directly with the [MediaWiki API](https://mediawiki.org/wiki/API:Main_page) and, therefore, it can be used with any wiki based on MediaWiki.
 
